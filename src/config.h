@@ -69,7 +69,7 @@
 #define SET_YEAR   2
 #define SET_MONTH  3
 #define SET_DAY    4
-#define HOUR_12_24 24
+#define HOUR_12_24 12
 // BLE OTA
 #define BLE_DEVICE_NAME        "Watchy BLE OTA"
 #define WATCHFACE_NAME         "Watchy 7 Segment"

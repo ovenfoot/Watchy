@@ -1,6 +1,6 @@
 #include "Watchy_7_SEG.h"
 
-#define DARKMODE true
+#define DARKMODE false
 
 const uint8_t BATTERY_SEGMENT_WIDTH = 7;
 const uint8_t BATTERY_SEGMENT_HEIGHT = 11;
@@ -26,11 +26,12 @@ void Watchy7SEG::drawTime(){
     display.setFont(&DSEG7_Classic_Bold_53);
     display.setCursor(5, 53+5);
     int displayHour;
-    if(HOUR_12_24==12){
-      displayHour = ((currentTime.Hour+11)%12)+1;
-    } else {
-      displayHour = currentTime.Hour;
-    }
+    displayHour = ((currentTime.Hour+11)%12)+1; // cant fix config.h so hardcoding this
+    // if(HOUR_12_24==12){
+    //   displayHour = ((currentTime.Hour+11)%12)+1;
+    // } else {
+    //   displayHour = currentTime.Hour;
+    // }
     if(displayHour < 10){
         display.print("0");
     }
@@ -39,7 +40,15 @@ void Watchy7SEG::drawTime(){
     if(currentTime.Minute < 10){
         display.print("0");
     }
-    display.println(currentTime.Minute);
+    display.print(currentTime.Minute);
+
+    // AM and PM
+    display.setFont(&Seven_Segment10pt7b);
+    if(currentTime.Hour < 12){
+      display.println("AM");
+    } else {
+      display.println("PM");
+    }
 }
 
 void Watchy7SEG::drawDate(){
